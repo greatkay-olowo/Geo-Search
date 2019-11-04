@@ -6,11 +6,25 @@
 
 * {
 	box-sizing: border-box;
-	font-size: 18px;
 	font-family: "Muli", sans-serif;
+	border-style: none;
+}
+
+html,
+body,
+div,
+img {
 	margin: 0;
 	padding: 0;
-	border-style: none;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+body {
+	line-height: 1;
+}
+
+.response {
+	visibility: visible;
 }
 
 body {
@@ -65,4 +79,83 @@ body {
 	background-color: var(--colour-1);
 	color: var(--color-2);
 	transition: 0.5s ease-out;
+}
+
+.cell {
+	border: 1px solid white;
+	border-radius: 5px;
+	margin: auto;
+	max-width: 80%;
+	width: 50%;
+	height: auto;
+	margin-top: 20px;
+	color: var(--color-2);
+}
+
+.info {
+	display: flex;
+	align-content: space-between;
+	padding: 10px;
+	width: 400px;
+}
+
+.info-container {
+	width: 80%;
+	height: auto;
+	margin: 0 5px;
+}
+
+.info-city-header {
+	font-size: 16px;
+	color: white;
+	margin-bottom: 8px;
+}
+.info-city-p {
+	font-size: 14px;
+	line-height: 1.5em;
+}
+
+.info-city-p span {
+	color: white;
+	font-size: 14px;
+}
+
+.map {
+	margin-top: 20px;
+	display: flex;
+	width: 100%;
+}
+
+.image-container {
+	margin: 0.5vw;
+	font-size: 0;
+	display: -ms-flexbox;
+	-ms-flexbox-wrap: wrap;
+	-ms-flexbox-direction: column;
+	flex-flow: row wrap;
+	display: -webkit-box;
+	display: flex;
+}
+
+.image-container-div {
+	-webkit-box-flex: auto;
+	-ms-flex: auto;
+	flex: auto;
+	width: 400px;
+	margin: 5px;
+}
+
+.image-container-div-img {
+	width: 100%;
+	height: auto;
+}
+
+@media screen and (max-width: 400px) {
+	.image-container-div {
+		margin: 0;
+	}
+
+	.image-container {
+		padding: 0;
+	}
 }
