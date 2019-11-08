@@ -84,7 +84,6 @@ body {
 
 .cell {
 	border: 1px solid white;
-	border-radius: 5px;
 	margin: auto;
 	max-width: 80%;
 	width: 50%;
@@ -159,4 +158,24 @@ body {
 	.image-container {
 		padding: 0;
 	}
+}
+
+.facebook-share {
+	background-color: var(--colour-1);
+	color: var(--color-2);
+	font-size: 12px;
+	font-weight: bold;
+	transition: 0.5s ease-out;
+	cursor: pointer;
+	max-width: 200px;
+	text-align: center;
+	width: 50%;
+	margin: auto;
+	padding: 5px;
+	border: none;
+	margin-top: 5px;
+}
+.facebook-share:hover {
+	background-color: var(--color-2);
+	color: var(--colour-1);
 }
