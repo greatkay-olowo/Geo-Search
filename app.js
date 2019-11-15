@@ -18,20 +18,15 @@ const responseDiv = document.getElementById('response');
 // API FETCH & DISTRUCTURING
 
 // declare api keys and url
-const openWatherAPI_KEY = '743190f3c54b8ac7de8e661b70b7d5f5';
-const openWeatherAPI = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch},${countrySearch}&appid=${openWatherAPI_KEY}`;
-const mapAPI_Key = 'eA37Ui0V7ThwhiSeC98LgwrsrNCAEAas';
-const mapAPI = `http://api.tomtom.com/map/1/staticimage?key=${mapAPI_Key}&zoom=9&center=13.567893,46.112341&format=jpg&layer=basic&style=main&width=1305&height=748&view=Unified`;
 
 const fetchAPI = async () => {
+  const openWatherAPI_KEY = '743190f3c54b8ac7de8e661b70b7d5f5';
+  const openWeatherAPI = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value},${countrySearch.value}&appid=${openWatherAPI_KEY}`;
+  console.log(`${citySearch.value},${countrySearch.value}`);
   // openWeather call
   const openWeatherResponse = await fetch(openWeatherAPI);
   const openWeatherdata = await openWeatherResponse.json();
-
-  // googleMap map url
-  // const mapResponse = await fetch(mapAPI);
-  // const mapdata = await mapResponse.json();
-  // console.log('TCL: fetchAPI -> mapdata', mapResponse);
+  console.log('TCL: fetchAPI -> openWeatherdata', openWeatherdata);
 
   // assign value
   const { name } = openWeatherdata;
