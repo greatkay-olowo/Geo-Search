@@ -19,11 +19,20 @@ const responseDiv = document.getElementById('response');
 
 // declare api keys and url
 
-const fetchAPI = async () => {
-  const openWatherAPI_KEY = '743190f3c54b8ac7de8e661b70b7d5f5';
-  const openWeatherAPI = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value},${countrySearch.value}&appid=${openWatherAPI_KEY}`;
+const openWatherAPI_KEY = '743190f3c54b8ac7de8e661b70b7d5f5';
+const openWeatherAPI = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value},${countrySearch.value}&appid=${openWatherAPI_KEY}`;
+
+// openWeather call
+const fetchData = async () => {
   console.log(`${citySearch.value},${countrySearch.value}`);
-  // openWeather call
+  await fetchAPI();
+  responseDiv.removeAttribute('visibility');
+  responseDiv.style.visibility = 'visible';
+  citySearch.value = '';
+  countrySearch.value = '';
+};
+
+const fetchAPI = async () => {
   const openWeatherResponse = await fetch(openWeatherAPI);
   const openWeatherdata = await openWeatherResponse.json();
   console.log('TCL: fetchAPI -> openWeatherdata', openWeatherdata);
@@ -60,13 +69,6 @@ const fetchAPI = async () => {
   });
 };
 // Fetch and display data in dom
-const fetchData = async () => {
-  await fetchAPI();
-  responseDiv.removeAttribute('visibility');
-  responseDiv.style.visibility = 'visible';
-  citySearch.value = '';
-  countrySearch.value = '';
-};
 
 // Share on facebook
 facebookShare.addEventListener('click', e => {
