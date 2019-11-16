@@ -15,6 +15,7 @@ const facebookShare = document.querySelector(
   '[data-js="facebook-share"]',
 );
 const responseDiv = document.getElementById('response');
+
 // API FETCH & DISTRUCTURING
 
 // declare api keys and url
@@ -23,50 +24,76 @@ const responseDiv = document.getElementById('response');
 const fetchAPI = async () => {
   const openWatherAPI_KEY = '743190f3c54b8ac7de8e661b70b7d5f5';
   const openWeatherAPI = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value},${countrySearch.value}&appid=${openWatherAPI_KEY}`;
+  const googleKey = 'AIzaSyArrLQkX1yaLUGhufF8Ic9UuE2kgWH89Bc';
 
   const openWeatherResponse = await fetch(openWeatherAPI);
   const openWeatherdata = await openWeatherResponse.json();
-  console.log('TCL: fetchAPI -> openWeatherdata', openWeatherdata);
+  console.log(openWeatherdata);
 
-  // assign value
-  const { name } = openWeatherdata;
-  const { description } = openWeatherdata.weather[0];
-  const { country: count } = openWeatherdata.sys;
-  const {
-    temp,
-    pressure: pres,
-    humidity: hum,
-  } = openWeatherdata.main;
-  const { speed } = openWeatherdata.wind;
-  city.textContent = name;
-  country.textContent = count;
-  weather.textContent = description;
-  temperature.textContent = temp;
-  pressure.textContent = pres;
-  humidity.textContent = hum;
-  wind.textContent = speed;
+  if (openWeatherdata.cod === '404') {
+    const { message } = openWeatherdata;
+    console.log(
+      'TCL: fetchAPI -> openWeatherdata.message >',
+      message,
+    );
 
-  // formular for C/F
-  const f = (temp * 9) / 5 + 32;
+    responseDiv.innerHTML = `
+<h2 id = 'error' >
+${message} 
+try again
+</h2>
+`;
+    responseDiv.removeAttribute('visibility');
+    responseDiv.style.visibility = 'visible';
+    citySearch.value = '';
+    countrySearch.value = '';
+  } else {
+    // assign value
+    const { name } = openWeatherdata;
+    const { description } = openWeatherdata.weather[0];
+    const { country: count } = openWeatherdata.sys;
+    const {
+      temp,
+      pressure: pres,
+      humidity: hum,
+    } = openWeatherdata.main;
+    const { speed } = openWeatherdata.wind;
+    const { lon, lat } = openWeatherdata.coord;
+    city.textContent = name;
+    country.textContent = count;
+    weather.textContent = description;
+    temperature.textContent = temp;
+    pressure.textContent = pres;
+    humidity.textContent = hum;
+    wind.textContent = speed;
 
-  tempChange.addEventListener('click', () => {
-    if (degree.textContent === 'C') {
-      temperature.textContent = Math.floor((f * 100) / 100);
-      degree.textContent = 'F';
-    } else if (degree.textContent === 'F') {
-      temperature.textContent = temp;
-      degree.textContent = 'C';
-    }
-  });
+    // map image
+    mapDiv.innerHTML = `<img class="map cell" src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lon}&markers=color:purple%7*label:C%7C${lat},${lon}&zoom=12&size=600x400&key=${googleKey}" alt="map" />`;
+    // show result in DOM
+
+    responseDiv.removeAttribute('visibility');
+    responseDiv.style.visibility = 'visible';
+    citySearch.value = '';
+    countrySearch.value = '';
+
+    // formular for C/F
+    const f = (temp * 9) / 5 + 32;
+
+    tempChange.addEventListener('click', () => {
+      if (degree.textContent === 'C') {
+        temperature.textContent = Math.floor((f * 100) / 100);
+        degree.textContent = 'F';
+      } else if (degree.textContent === 'F') {
+        temperature.textContent = temp;
+        degree.textContent = 'C';
+      }
+    });
+  }
 };
 // Fetch and display data in dom
 const fetchData = async () => {
   await fetchAPI();
   console.log(`${citySearch.value},${countrySearch.value}`);
-  responseDiv.removeAttribute('visibility');
-  responseDiv.style.visibility = 'visible';
-  citySearch.value = '';
-  countrySearch.value = '';
 };
 
 // Share on facebook

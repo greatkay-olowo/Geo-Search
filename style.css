@@ -38,6 +38,15 @@ body {
   color: var(--color-2);
 }
 
+#error {
+  color: var(--color-2);
+  padding-top: 50px;
+  margin: auto;
+  width: 50%;
+  text-transform: capitalize;
+  text-align: center;
+}
+
 .form {
   text-align: center;
 }
