@@ -61,8 +61,8 @@ const fetchAPI = async () => {
 };
 // Fetch and display data in dom
 const fetchData = async () => {
-  console.log(`${citySearch.value},${countrySearch.value}`);
   await fetchAPI();
+  console.log(`${citySearch.value},${countrySearch.value}`);
   responseDiv.removeAttribute('visibility');
   responseDiv.style.visibility = 'visible';
   citySearch.value = '';
