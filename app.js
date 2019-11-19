@@ -20,20 +20,15 @@ const error = document.getElementById('error');
 // API FETCH & DISTRUCTURING
 const fetchAPI = async () => {
   // declare api keys and url
-  const openWatherAPI_KEY = '743190f3c54b8ac7de8e661b70b7d5f5';
-  const openWeatherAPI = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value},${countrySearch.value}&appid=${openWatherAPI_KEY}`;
+  const openWatherApiKey = '743190f3c54b8ac7de8e661b70b7d5f5';
+  const openWeatherApi = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value},${countrySearch.value}&appid=${openWatherApiKey}`;
   const googleKey = 'AIzaSyArrLQkX1yaLUGhufF8Ic9UuE2kgWH89Bc';
   // openWeather call
-  const openWeatherResponse = await fetch(openWeatherAPI);
+  const openWeatherResponse = await fetch(openWeatherApi);
   const openWeatherdata = await openWeatherResponse.json();
-  console.log(openWeatherdata);
 
   if (openWeatherdata.cod === '404') {
     const { message } = openWeatherdata;
-    console.log(
-      'TCL: fetchAPI -> openWeatherdata.message >',
-      message,
-    );
 
     error.innerHTML = `<h2 id = 'error' >${message}. try again </h2>`;
     responseDiv.removeAttribute('visibility');
@@ -89,7 +84,6 @@ const fetchAPI = async () => {
 // Fetch and display data in dom
 const fetchData = async () => {
   await fetchAPI();
-  console.log(`${citySearch.value},${countrySearch.value}`);
 };
 
 // Share on facebook
