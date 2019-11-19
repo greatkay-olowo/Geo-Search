@@ -40,11 +40,13 @@ body {
 
 #error {
   color: var(--color-2);
-  padding-top: 50px;
   margin: auto;
-  width: 50%;
+  width: 80%;
   text-transform: capitalize;
   text-align: center;
+  font-size: 1em;
+  line-height: 20px;
+  margin-top: 5px;
 }
 
 .form {
@@ -106,8 +108,12 @@ body {
   max-width: 80%;
   width: 50%;
   height: auto;
-  margin-top: 20px;
+  margin-top: 10px;
   color: var(--color-2);
+}
+
+#weather {
+  text-transform: capitalize;
 }
 
 .info {

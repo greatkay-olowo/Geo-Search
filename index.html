@@ -30,21 +30,22 @@
     <!-- logo -->
     <h1 class="logo-text">GEO SEARCH</h1>
     <div class="container">
-      <form class="form">
+      <form class="form" autocomplete="off">
         <div class="input-flex">
           <input
             type="text"
             name="city"
             class="city-name-input"
             id="city-search"
-            placeholder="City"
+            placeholder="City e.g. Lagos"
           />
+
           <input
             type="text"
             name="country"
             class="city-name-input"
             id="country-search"
-            placeholder="Country"
+            placeholder="Country e.g. NG"
           />
 
           <div
@@ -55,6 +56,7 @@
             Search
           </div>
         </div>
+        <h2 id="error"></h2>
       </form>
       <div id="response">
         <div class="cell info">

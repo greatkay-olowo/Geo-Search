@@ -15,17 +15,15 @@ const facebookShare = document.querySelector(
   '[data-js="facebook-share"]',
 );
 const responseDiv = document.getElementById('response');
+const error = document.getElementById('error');
 
 // API FETCH & DISTRUCTURING
-
-// declare api keys and url
-
-// openWeather call
 const fetchAPI = async () => {
+  // declare api keys and url
   const openWatherAPI_KEY = '743190f3c54b8ac7de8e661b70b7d5f5';
   const openWeatherAPI = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value},${countrySearch.value}&appid=${openWatherAPI_KEY}`;
   const googleKey = 'AIzaSyArrLQkX1yaLUGhufF8Ic9UuE2kgWH89Bc';
-
+  // openWeather call
   const openWeatherResponse = await fetch(openWeatherAPI);
   const openWeatherdata = await openWeatherResponse.json();
   console.log(openWeatherdata);
@@ -37,12 +35,7 @@ const fetchAPI = async () => {
       message,
     );
 
-    responseDiv.innerHTML = `
-<h2 id = 'error' >
-${message} 
-try again
-</h2>
-`;
+    error.innerHTML = `<h2 id = 'error' >${message}. try again </h2>`;
     responseDiv.removeAttribute('visibility');
     responseDiv.style.visibility = 'visible';
     citySearch.value = '';
@@ -66,6 +59,9 @@ try again
     pressure.textContent = pres;
     humidity.textContent = hum;
     wind.textContent = speed;
+
+    // remove error message
+    error.innerHTML = ``;
 
     // map image
     mapDiv.innerHTML = `<img class="map cell" src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lon}&markers=color:purple%7*label:C%7C${lat},${lon}&zoom=12&size=600x400&key=${googleKey}" alt="map" />`;
