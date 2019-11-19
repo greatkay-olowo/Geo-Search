@@ -16,12 +16,8 @@
     "url": "https://github.com/greatkay-olowo/Geo-Search/issues"
   },
   "homepage": "https://github.com/greatkay-olowo/Geo-Search#readme",
-  "dependencies": {
-    "gulp": "^4.0.2"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
     "eslint": "^6.6.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.5.0",
