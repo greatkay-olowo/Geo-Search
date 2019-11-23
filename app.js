@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const city = document.getElementById('city');
 const country = document.getElementById('country');
