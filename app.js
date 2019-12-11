@@ -36,6 +36,8 @@ const fetchAPI = async () => {
     responseDiv.style.visibility = 'visible';
     citySearch.value = '';
     countrySearch.value = '';
+    return
+
   } else {
     // assign value
     const { name } = openWeatherdata;
