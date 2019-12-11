@@ -33,11 +33,8 @@ const fetchAPI = async () => {
 
     error.innerHTML = `<h2 id = 'error' >${message}. try again </h2>`;
     responseDiv.removeAttribute('visibility');
-    responseDiv.style.visibility = 'visible';
     citySearch.value = '';
     countrySearch.value = '';
-    return
-
   } else {
     // assign value
     const { name } = openWeatherdata;
